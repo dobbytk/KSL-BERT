@@ -3,10 +3,6 @@
 ### 한국어 구어체 문장에 특화된 사전 학습 모델
 
 <br>
-
----
-
-<br>
 공개된 한국어 BERT는 대부분 한국어 위키, 뉴스 기사, 책 등 잘 정제된 데이터를 기반으로 학습한 모델입니다. 한편, 실제로 NSMC와 같은 댓글형 데이터셋은 정제되지 않았고 구어체 특징에 신조어가 많으며, 오탈자 등 공식적인 글쓰기에서 나타나지 않는 표현들이 빈번하게 등장합니다.
 
 KcBERT는 위와 같은 특성의 데이터셋에 적용하기 위해, 네이버 뉴스에서 댓글과 대댓글을 수집해, 토크나이저와 BERT모델을 처음부터 학습한 Pretrained BERT 모델입니다.
@@ -16,8 +12,6 @@ KcBERT는 위와 같은 특성의 데이터셋에 적용하기 위해, 네이버
 **KSL-BERT**의 Huggingface의 Transformers 라이브러리를 통해 간편히 불러와 사용할 수 있습니다. (별도의 파일 다운로드가 필요하지 않습니다.) <br>
 
 ## How to use
-
----
 
 ### Requirements
 
@@ -89,8 +83,6 @@ def clean(x):
 
 ## Tokenizer Train
 
----
-
 Tokenizer는 Huggingface의 Tokenizers 라이브러리를 통해 학습을 진행했습니다.<br>
 그 중 `BertWordPieceTokenizer` 를 이용하여 학습을 진행했고, Vocab Size는 `30000` 으로 진행했습니다.<br>
 Tokenizer를 학습하는 것에는 데이터를 모두 사용했습니다.
@@ -133,8 +125,6 @@ Tesla V100 GPU를 이용하여 약 20일동안 진행했고, 현재 Huggigface�
 
 ## Example
 
----
-
 ### HuggingFace MASK LM
 
 [HuggingFace KSL-BERT Base 모델](https://huggingface.co/dobbytk/KSL-BERT) 에서 아래와 같이 테스트 해 볼 수 있습니다.
@@ -143,8 +133,6 @@ Tesla V100 GPU를 이용하여 약 20일동안 진행했고, 현재 Huggigface�
 ![KakaoTalk_Image_2021-10-24-22-35-30](https://user-images.githubusercontent.com/51789449/138596570-18f19530-bbe9-41fa-be99-71a3ee0b30e8.png)
 
 ## KSL-BERT Performance
-
----
 
 |                   | Size  | **NSMC**<br/>(acc) | **Naver NER**<br/>(F1) | **PAWS**<br/>(acc) | **KorNLI**<br/>(acc) | **KorSTS**<br/>(spearman) | **Question Pair**<br/>(acc) | **KorQuaD (Dev)**<br/>(EM/F1) | **Korean-Hate-Speech (Dev)**<br/>(F1) |
 | :---------------- | :---: | :----------------: | :--------------------: | :----------------: | :------------------: | :-----------------------: | :-------------------------: | :---------------------------: | :-----------------------------------: |
@@ -156,8 +144,6 @@ Tesla V100 GPU를 이용하여 약 20일동안 진행했고, 현재 Huggigface�
 | KSL-BERT          | 419M  |       89.24        |           -            |         -          |          -           |             -             |              -              |               -               |                 67.30                 |
 
 ## Reference
-
----
 
 ### Github Repos
 
