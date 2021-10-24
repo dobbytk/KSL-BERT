@@ -9,7 +9,7 @@ import numpy as np
 category_map = {
     "0": "일반글",
     "1": "공격발언",
-    "2": "차별발언"
+    "2": "혐오발언"
 }
 
 app = Flask(__name__)
