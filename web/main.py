@@ -6,6 +6,12 @@ from keras.preprocessing.sequence import pad_sequences
 import torch.nn.functional as F
 import numpy as np
 
+category_map = {
+    "0": "일반글",
+    "1": "공격발언",
+    "2": "차별발언"
+}
+
 app = Flask(__name__)
 
 model = BertForSequenceClassification.from_pretrained('dobbytk/letr-sol-profanity-filter')
@@ -43,11 +49,13 @@ def test_sentences(sentences):
                         token_type_ids=None, 
                         attention_mask=b_input_mask)
     logits = outputs[0]
-    logits = F.softmax(logits.detach().cpu()).numpy()
+    logits = np.array(F.softmax(logits.detach().cpu()))
+    category = np.argmax(logits)
     return {
-        'Default': np.round(logits[0][0],4),
-        'Offensive': np.round(logits[0][1], 4),
-        'Hate': np.round(logits[0][2], 4)
+        'Default': format(logits[0][0], ".4f"),
+        'Offensive': format(logits[0][1], ".4f"),
+        'Hate': format(logits[0][2],".4f"),
+        'Category': category_map[str(category)]
     }
 
 @app.route('/')

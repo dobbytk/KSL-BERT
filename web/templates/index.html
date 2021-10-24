@@ -10,26 +10,33 @@
   <body>
     <header></header>
     <main>
-      <div class="container">
-        <form action="/predict" method="post">
-          <textarea
-            name="text"
-            id="text_box"
-            placeholder="문장을 입력하세요."
-            cols="30"
-            rows="10"
-          >
-{{inputText}}</textarea
-          >
-          <button class="predict_btn">예측하기</button>
-        </form>
+      <div class="main__title">
+        <h2>Hate Speech Detection</h2>
       </div>
-      <div class="container">
-        {% if prediction %}
-        <span>일반글 : {{prediction.Default}}<br /></span>
-        <span>공격발언 : {{prediction.Offensive}}<br /></span>
-        <span>차별발언 : {{prediction.Hate}}<br /></span>
-        {% endif %}
+      <div class="main__container">
+        <div class="main__text-container">
+          <form action="/predict" method="post">
+            <textarea
+              name="text"
+              id="text_box"
+              placeholder="문장을 입력하세요."
+              cols="30"
+              rows="10"
+            >
+{{inputText}}</textarea
+            >
+            <button class="predict_btn">예측하기</button>
+          </form>
+        </div>
+        <div class="main__text-container">
+          {% if prediction %}
+          <div>Defalut : {{prediction.Default}}</div>
+          <div>Offensive : {{prediction.Offensive}}</div>
+          <div>Hate : {{prediction.Hate}}</div>
+          <hr />
+          <div class="text-category">{{prediction.Category}}</div>
+          {% endif %}
+        </div>
       </div>
     </main>
   </body>
